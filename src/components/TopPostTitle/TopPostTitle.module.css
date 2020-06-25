@@ -1,0 +1,35 @@
+.TopPostTitle {
+  width: 20%;
+  display: flex;
+  flex-flow: wrap;
+  box-sizing: border-box;
+  margin: 20px 30px 30px;
+}
+
+.box {
+  width: 100%;
+  text-align: center;
+  border: 0 solid gray;
+  padding: 5px;
+  margin: 0 50px;
+  box-shadow: 1px 2px 3px 3px gray;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .TopPostTitle {
+    margin-left: 15%;
+  }
+}
+
+@media (max-width: 600px) {
+  .TopPostTitle {
+    margin-left: 20%;
+  }
+}
+
+@media (max-width: 420px) {
+  .TopPostTitle {
+    margin-left: 20px;
+  }
+}
