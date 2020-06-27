@@ -17,9 +17,13 @@ class AddPost extends Component {
     };
 
     axios.post('/posts', posts)
-        .then(response => {
-          console.log(response);
-        });
+    .then(response => {
+      console.log(response);
+    });
+  }
+
+  componentDidMount(){
+    console.log('add post: ', this.props);
   }
 
   render() {

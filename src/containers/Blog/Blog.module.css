@@ -1,6 +1,30 @@
-.errors {
-  color: blue;
-  font-size: 42px;
-  margin-left: 35%;
+.Links {
+  text-align: center;
+}
+
+.Links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Links li {
+  display: inline-block;
+  margin: 15px;
   font-weight: bold;
+  font-size: 20px;
+}
+
+.Links a {
+  text-decoration: none;
+  color: black;
+}
+
+.Links a:hover,
+.Links a:active {
+  color: red;
+}
+
+.Links a.active {
+  color: green;
 }
