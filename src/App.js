@@ -8,6 +8,7 @@ class App extends Component {
 
     return (
       <Aux>
+        {/*<BrowserRouter basename='/my-app'>*/}
         <BrowserRouter>
           <Blog />
         </BrowserRouter>

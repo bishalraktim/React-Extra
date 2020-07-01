@@ -9,10 +9,19 @@
   width: 100%;
   height: 100%;
   padding: 5%;
-  margin: 5%;
   box-sizing: border-box;
   text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
   border: 0 solid gray;
   box-shadow: 1px 2px 3px 3px gray;
   cursor: pointer;
+}
+
+@media (max-width: 465px) {
+  .box {
+    font-size: 14px;
+  }
 }

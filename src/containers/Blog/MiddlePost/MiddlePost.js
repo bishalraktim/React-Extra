@@ -7,22 +7,32 @@ class MiddlePost extends Component {
     loadedPost: null
   }
 
+  componentDidMount(){
+    this.loadMiddlePost();
+  }
+
   componentDidUpdate(){
-    if(this.props.id){
-      if(!this.state.loadedPost || (this.props.id !== this.state.loadedPost.id)){
-        //console.log('first:', this.props.id);
+    this.loadMiddlePost();
+  }
+
+  loadMiddlePost(){
+    console.log('middle post: ', this.props);
+    if(this.props.match.params.id){
+      if(!this.state.loadedPost || (+this.props.match.params.id !== this.state.loadedPost.id)){
+        //console.log('first:', this.props.match.params.id);
         //console.log('second: ', this.state.loadedPost.id);
-        axios.get('/posts/' + this.props.id)
-            .then(response => {
-              //console.log(response);
-              this.setState({loadedPost: response.data});
-            });
+        axios.get('/posts/' + this.props.match.params.id)
+          .then(response => {
+            //console.log('response: ', response);
+            this.setState({loadedPost: response.data});
+            //console.log('second: ', this.state.loadedPost.id);
+          });
       }
     }
   }
 
   deletePostHandler = () => {
-    axios.delete('/posts/' + this.props.id)
+    axios.delete('/posts/' + this.props.match.params.id)
       .then(response => {
         console.log(response);
       });

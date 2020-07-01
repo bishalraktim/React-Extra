@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import TopPostTitle from '../../../components/TopPostTitle/TopPostTitle';
 import axios from '../../../axios';
 import classes from './TopPostTitles.module.css';
-import { Link } from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+import MiddlePost from '../MiddlePost/MiddlePost';
 
  class TopPostTitles extends Component {
    state = {
@@ -12,7 +13,7 @@ import { Link } from 'react-router-dom';
    }
 
    componentDidMount() {
-     console.log(this.props);
+     console.log('top post titles: ', this.props);
      axios.get('/posts')
       .then(response => {
         //console.log(response);
@@ -41,7 +42,7 @@ import { Link } from 'react-router-dom';
      if(!this.state.error){
        posts = this.state.posts.map(post => {
          return(
-           <Link to={'/' + post.id} key={post.id}
+           <Link to={'/posts/' + post.id} key={post.id}
             style={{
               textDecoration: 'none',
               width: '35%',
@@ -61,9 +62,12 @@ import { Link } from 'react-router-dom';
      }
 
      return(
-       <section style={styles}>
-         {posts}
-       </section>
+       <div>
+         <section style={styles}>
+           {posts}
+         </section>
+         <Route path={this.props.match.url + '/:id'} exact component={MiddlePost} />
+       </div>
      );
    }
  }

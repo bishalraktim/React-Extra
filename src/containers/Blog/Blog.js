@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import classes from './Blog.module.css';
 import TopPostTitles from './TopPostTitles/TopPostTitles';
-import AddPost from './AddPost/AddPost';
-import MiddlePost from './MiddlePost/MiddlePost';
+import asyncComponent from '../../hoc/asyncComponent/asyncComponent';
 
-import { Route, NavLink } from 'react-router-dom';
+//import {Route, NavLink, Switch, Redirect} from 'react-router-dom';
+
+import {Route, NavLink, Switch} from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
 
+const AsyncAddPost = asyncComponent(() => {
+  return import('./AddPost/AddPost');
+});
+
 class Blog extends Component {
+  state = {
+    auth: true
+  }
+
   render () {
     return(
       <Aux>
         <header className={classes.Links}>
           <nav>
             <ul>
-              <li><NavLink activeClassName={classes.active} to='/' exact>Home</NavLink></li>
+              <li><NavLink activeClassName={classes.active} to='/posts/' exact>Posts</NavLink></li>
               <li><NavLink activeClassName={classes.active} to={{
                 pathname: '/new-post',
                 hash: '#submit',
@@ -26,9 +35,15 @@ class Blog extends Component {
         {/*<Route path='/' exact render={() => <h1>Home</h1>}/>
         <Route path='/new-post' exact render={() => <h1>This is our new page!</h1>}/>*/}
 
-        <Route path='/' exact component={TopPostTitles} />
-        <Route path='/new-post' component={AddPost} />
-        <Route path='/:id' component={MiddlePost} />
+        <Switch>
+          <Route path='/posts/' component={TopPostTitles} />
+          {this.state.auth ? <Route path='/new-post' component={AsyncAddPost} /> : null}
+
+          <Route render={() => <h1><center>Page Not Found!</center></h1>} />
+
+          {/*<Redirect from='/' to='/posts/' component={TopPostTitles} />*/}
+          <Route path='/' component={TopPostTitles} />
+        </Switch>
       </Aux>
     );
   }
